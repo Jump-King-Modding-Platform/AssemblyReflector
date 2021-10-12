@@ -11,7 +11,7 @@ namespace AssemblyReflector
             [Option('i', "input", Required = true, HelpText = "Path to input assembly.")]
             public string InputPath { get; set; } = null!;
 
-            [Option('o', "output", Required = true, HelpText = "Path to output assembly.")]
+            [Option('o', "output", Required = true, HelpText = "Path to output file or directory.")]
             public string OutputPath { get; set; } = null!;
             
             [Option('f', "force", Default = false, HelpText = "If set then output files will be overwritten if they exist.")]
@@ -39,7 +39,9 @@ namespace AssemblyReflector
                 options.OutputPath = Path.Combine(options.OutputPath, Path.GetFileName(options.InputPath));
             }
 
+            Console.WriteLine("Saving assembly...");
             reflector.AssemblyDefinition.Write(options.OutputPath);
+            Console.WriteLine("Done!");
         }
 
         private static bool ValidateOptions(LaunchOptions options, out string? errorMessage)
