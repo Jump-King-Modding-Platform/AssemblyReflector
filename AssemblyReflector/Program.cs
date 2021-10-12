@@ -101,7 +101,7 @@ namespace AssemblyReflector
                 
                 if (outputFileAttributes != FileAttributes.Directory && !options.Force && File.Exists(options.OutputPath))
                 {
-                    errorMessage = "Output path file already exists. Specify --force to overwrite output files.";
+                    errorMessage = "Output path file already exists. Use --force to overwrite.";
                     return false;
                 }
 
