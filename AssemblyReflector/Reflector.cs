@@ -32,6 +32,8 @@ namespace AssemblyReflector
 
         private void CleanModule(ModuleDefinition module)
         {
+            module.Resources.Clear();
+
             foreach (var type in module.Types)
             {
                 CleanType(type);
