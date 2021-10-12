@@ -2,7 +2,7 @@ name: Build and create release
 
 on:
   push:
-    branches: [ ci ]
+    branches: [ main ]
 
 jobs:
   build:
