@@ -28,6 +28,7 @@ namespace AssemblyReflector
             if (!ValidateOptions(options, out string? error))
             {
                 Console.WriteLine(error);
+                Environment.ExitCode = 1;
                 return;
             }
 
