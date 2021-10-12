@@ -31,7 +31,7 @@ namespace AssemblyReflector
                 return;
             }
 
-            var reflector = new Reflector(options.InputPath);
+            using var reflector = new Reflector(options.InputPath);
             reflector.CleanAssembly();
 
             if (Directory.Exists(options.OutputPath))

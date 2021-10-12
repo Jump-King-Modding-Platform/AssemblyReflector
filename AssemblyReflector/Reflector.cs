@@ -4,7 +4,7 @@ using Mono.Cecil;
 
 namespace AssemblyReflector
 {
-    internal class Reflector
+    internal class Reflector : IDisposable
     {
         public readonly AssemblyDefinition AssemblyDefinition;
 
@@ -20,6 +20,11 @@ namespace AssemblyReflector
             
             var assemblyDefinition = AssemblyDefinition.ReadAssembly(assemblyFilePath, readerParameters);
             AssemblyDefinition = assemblyDefinition ?? throw new ArgumentNullException(nameof(assemblyDefinition));
+        }
+
+        public void Dispose()
+        {
+            AssemblyDefinition.Dispose();
         }
 
         public void CleanAssembly()
