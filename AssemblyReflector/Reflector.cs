@@ -61,10 +61,11 @@ namespace AssemblyReflector
 
             var processor = method.Body.GetILProcessor();
             processor.Clear();
+            processor.Body.Variables.Clear();
             
             processor.Emit(OpCodes.Nop);
-
-            if (method.ReturnType.FullName != "System.Void")
+            
+            if (!method.IsConstructor && method.ReturnType.FullName != "System.Void")
             {
                 if (method.ReturnType.IsValueType || method.ReturnType.IsGenericParameter)
                 {
