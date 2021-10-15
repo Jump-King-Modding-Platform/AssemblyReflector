@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using Mono.Cecil;
+using Mono.Cecil.Cil;
 
 namespace AssemblyReflector
 {
@@ -60,6 +61,26 @@ namespace AssemblyReflector
 
             var processor = method.Body.GetILProcessor();
             processor.Clear();
+            
+            processor.Emit(OpCodes.Nop);
+
+            if (method.ReturnType.FullName != "System.Void")
+            {
+                if (method.ReturnType.IsValueType || method.ReturnType.IsGenericParameter)
+                {
+                    var local = new VariableDefinition(method.ReturnType);
+                    processor.Body.Variables.Add(local);
+                    processor.Emit(OpCodes.Ldloca_S, local);
+                    processor.Emit(OpCodes.Initobj, method.ReturnType);
+                    processor.Emit(OpCodes.Ldloc, local);
+                }
+                else
+                {
+                    processor.Emit(OpCodes.Ldnull);
+                }
+            }
+            
+            processor.Emit(OpCodes.Ret);
         }
     }
 }
