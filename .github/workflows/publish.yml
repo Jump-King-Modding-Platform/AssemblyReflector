@@ -36,9 +36,8 @@ jobs:
       - name: Publish release
         uses: ncipollo/release-action@v1
         with:
-          name: Modular release
+          name: Development build
           artifacts: Build.zip, LICENSE
           token: ${{ secrets.GITHUB_TOKEN }}
           tag: latest
           generateReleaseNotes: true
-          name: Development build
