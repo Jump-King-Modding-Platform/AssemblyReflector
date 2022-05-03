@@ -40,4 +40,4 @@ jobs:
           artifacts: Build.zip, LICENSE
           token: ${{ secrets.GITHUB_TOKEN }}
           tag: latest
-          generateReleaseNotes: true
+          generateReleaseNotes: false
