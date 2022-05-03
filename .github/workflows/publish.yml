@@ -34,12 +34,11 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Publish release
-        uses: johnwbyrd/update-release@v1.0.0
+        uses: ncipollo/release-action@v1
         with:
+          name: Modular release
+          artifacts: Build.zip, LICENSE
           token: ${{ secrets.GITHUB_TOKEN }}
-          files: |
-            Build.zip
-            LICENSE
-          prerelease: true
           tag: latest
-          release: "Development build"
+          generateReleaseNotes: true
+          name: Development build
